@@ -18,22 +18,43 @@ document.addEventListener("DOMContentLoaded", () => {
         const activityCard = document.createElement("div");
         activityCard.className = "activity-card";
 
-        const spotsLeft = details.max_participants - details.participants.length;
+        const spotsLeft = details.max_participants - (details.participants ? details.participants.length : 0);
+
+        // Build participants HTML
+        const participants = details.participants || [];
+        let participantsHTML = '<div class="participants">';
+        participantsHTML += '<h5>Participants</h5>';
+        if (participants.length === 0) {
+          participantsHTML += '<p class="info">No participants yet</p>';
+        } else {
+          participantsHTML += '<ul class="participants-list">';
+          participants.forEach((p, i) => {
+            // derive initials from part before @ or from segments
+            const namePart = (p || '').split('@')[0] || '';
+            const initials = namePart.split(/[.\-_\s]/).map(s => s[0] || '').join('').slice(0,2).toUpperCase() || 'U';
+            participantsHTML += `<li class="participant" style="animation-delay:${i * 60}ms"><span class="avatar">${initials}</span><span class="email">${p}</span></li>`;
+          });
+          participantsHTML += '</ul>';
+        }
+        participantsHTML += '</div>';
 
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
-          <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <p><strong>Availability:</strong> <span class="availability">${spotsLeft} spots left</span></p>
+          ${participantsHTML}
         `;
 
         activitiesList.appendChild(activityCard);
 
-        // Add option to select dropdown
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        activitySelect.appendChild(option);
+        // Add option to select dropdown (avoid duplicates)
+        if (![...activitySelect.options].some(o => o.value === name)) {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          activitySelect.appendChild(option);
+        }
       });
     } catch (error) {
       activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
