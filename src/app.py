@@ -40,7 +40,69 @@ activities = {
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
     }
 }
-
+# Add more activities to the database
+activities.update({
+    "Debate Club": {
+        "description": "Develop public speaking and argumentation skills",
+        "schedule": "Wednesdays, 4:00 PM - 5:30 PM",
+        "max_participants": 15,
+        "participants": ["alex@mergington.edu"]
+    },
+    "Science Club": {
+        "description": "Explore science through experiments and projects",
+        "schedule": "Mondays, 3:30 PM - 4:30 PM",
+        "max_participants": 25,
+        "participants": ["jessica@mergington.edu", "ryan@mergington.edu"]
+    },
+    "Art Club": {
+        "description": "Express creativity through painting, drawing, and sculpture",
+        "schedule": "Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": ["mia@mergington.edu"]
+    },
+    "Music Band": {
+        "description": "Play musical instruments and perform in concerts",
+        "schedule": "Tuesdays and Fridays, 4:00 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": ["david@mergington.edu", "sarah@mergington.edu"]
+    },
+    "Drama Club": {
+        "description": "Perform in theatrical productions and develop acting skills",
+        "schedule": "Saturdays, 2:00 PM - 4:00 PM",
+        "max_participants": 22,
+        "participants": ["lucas@mergington.edu"]
+    },
+    "Photography Club": {
+        "description": "Learn photography techniques and share your perspective",
+        "schedule": "Wednesdays, 3:30 PM - 4:30 PM",
+        "max_participants": 16,
+        "participants": ["natalie@mergington.edu"]
+    },
+    "Robotics Team": {
+        "description": "Build and program robots for competitions",
+        "schedule": "Mondays and Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 14,
+        "participants": ["chris@mergington.edu", "maya@mergington.edu"]
+    },
+    "Environmental Club": {
+        "description": "Promote sustainability and environmental awareness",
+        "schedule": "Fridays, 3:30 PM - 4:30 PM",
+        "max_participants": 20,
+        "participants": ["zoe@mergington.edu"]
+    },
+    "Model UN": {
+        "description": "Simulate United Nations debates and diplomacy",
+        "schedule": "Tuesdays, 4:00 PM - 5:30 PM",
+        "max_participants": 24,
+        "participants": ["kevin@mergington.edu", "grace@mergington.edu"]
+    },
+    "Math Club": {
+        "description": "Solve challenging math problems and compete in competitions",
+        "schedule": "Thursdays, 4:00 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": ["brandon@mergington.edu"]
+    }
+})
 
 @app.get("/")
 def root():
